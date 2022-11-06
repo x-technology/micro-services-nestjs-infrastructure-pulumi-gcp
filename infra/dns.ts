@@ -8,7 +8,7 @@ export const mainRecord = new cloudflare.Record("main", {
   name: config.require('host'),
   zoneId: config.require('zoneId'),
   type: "A",
-  proxied: true,
+  proxied: false,
   value:  ingress.ingressServiceIP,
   ttl: 1
 });
