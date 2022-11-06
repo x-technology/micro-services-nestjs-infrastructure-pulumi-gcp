@@ -6,6 +6,6 @@ config:
   docker:registry: xtechnology/micro-services-nestjs-infrastructure-pulumi-gcp
   gcp:project: xtechnology
   gcp:zone: europe-west2-b
-  gke:masterVersion: "1.24"
-  gke:nodeCount: "1"
+  gke:masterVersion: "1.24.6-gke.1500"
+  gke:nodeCount: 1
   gke:nodeMachineType: n1-standard-1

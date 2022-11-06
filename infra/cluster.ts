@@ -5,9 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 const name = "apps-cluster";
 
 const config = new pulumi.Config('gke');
-export const masterVersion = config.get("gke:masterVersion") ||
+export const masterVersion = config.get("masterVersion") ||
   gcp.container.getEngineVersions().then(it => it.latestMasterVersion);
-pulumi.log.info("config" + config.get("masterVersion"))
 
 // Create a GKE cluster
 export const cluster = new gcp.container.Cluster(name, {
