@@ -1,22 +1,21 @@
-FROM node:lts-alpine
+FROM node:16.18.0 as builder
 
-RUN apk update && \
-  apk upgrade && \
-  apk add bash protoc
+RUN apt update && \
+  apt install -y protobuf-compiler
 
-# TODO make a path variable
-WORKDIR /usr/src/main
-COPY package.json yarn.lock /usr/src/main/
+# Create app directory
+WORKDIR /usr/src/app
 
-# Install runtime dependencies
-RUN yarn install
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+COPY package*.json turbo.json ./
 
-COPY . /usr/src/main
-RUN yarn lerna bootstrap
-RUN yarn lerna run build
+COPY packages ./packages
 
-# Copy "only" required dependencies, decided to go copy everything
-# COPY packages/common /usr/src/main/packages/common
-# COPY proto /usr/src/main/proto
-# COPY tsconfig.json /usr/src/main
-# COPY node_modules /usr/src/main/node_modules
+# Install workspace dependencies
+RUN npm install
+
+# Creates a "dist" folder with the production build
+RUN npm run build
+
+# Start the server using the production build
+CMD [ "node", "packages/dist/main.js" ]

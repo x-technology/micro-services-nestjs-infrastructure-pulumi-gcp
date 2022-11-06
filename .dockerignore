@@ -1,2 +1,6 @@
+Dockerfile
+.dockerignore
 node_modules
-infrastructure
+npm-debug.log
+dist
+infra
