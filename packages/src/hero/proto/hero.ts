@@ -122,13 +122,15 @@ export interface HeroesService {
 
 export class HeroesServiceClientImpl implements HeroesService {
   private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
+  private readonly service: string;
+  constructor(rpc: Rpc, opts?: { service?: string }) {
+    this.service = opts?.service || "hero.HeroesService";
     this.rpc = rpc;
     this.FindOne = this.FindOne.bind(this);
   }
   FindOne(request: HeroById): Promise<Hero> {
     const data = HeroById.encode(request).finish();
-    const promise = this.rpc.request("hero.HeroesService", "FindOne", data);
+    const promise = this.rpc.request(this.service, "FindOne", data);
     return promise.then((data) => Hero.decode(new _m0.Reader(data)));
   }
 }
