@@ -1,0 +1,11 @@
+config:
+  cloudflare-config:host: in1.app
+  cloudflare-config:zoneId: 52e0efcb65e51c11102510a06c0fa833
+  cloudflare:apiToken:
+    secure: AAABAMrVNGqvmR8pyIwZAXSf7lGodhRzul+iDoGkf2g721lFtM4Ukfy3SRf4TIY8ZYE3TK7+q92YYruO9miAC0R04TdKXXo6
+  docker:registry: xtechnology/micro-services-nestjs-infrastructure-pulumi-gcp
+  gcp:project: xtechnology
+  gcp:zone: europe-west2-b
+  gke:masterVersion: "1.24"
+  gke:nodeCount: "1"
+  gke:nodeMachineType: n1-standard-1
