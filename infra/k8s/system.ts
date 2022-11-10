@@ -2,7 +2,9 @@ import * as k8s from "@pulumi/kubernetes";
 import * as pulumi from "@pulumi/pulumi";
 import * as cluster from "../cluster";
 
-const ingressNamespace = new k8s.core.v1.Namespace("ingress", undefined, { provider: cluster.k8sProvider });
+const ingressNamespace = new k8s.core.v1.Namespace("ingress", undefined, {
+  provider: cluster.k8sProvider
+});
 
 const ingress = new k8s.helm.v3.Release("nginx", {
   chart: "ingress-nginx",

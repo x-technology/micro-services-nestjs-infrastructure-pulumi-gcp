@@ -3,7 +3,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as cluster from "../cluster";
 import * as dns from "../dns";
 
-export const appNamespace = new k8s.core.v1.Namespace("apps", undefined, { provider: cluster.k8sProvider });
+export const appNamespace = new k8s.core.v1.Namespace("apps", undefined, {
+  provider: cluster.k8sProvider,
+});
 
 const config = new pulumi.Config('docker');
 export const dockerRegistry = config.get("registry");

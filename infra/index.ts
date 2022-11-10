@@ -6,5 +6,5 @@ import { currencyConverter } from "./k8s/apps";
 export const clusterName = cluster.name;
 export const config = kubeconfig;
 export const externalIp = ingressServiceIP;
-// export const domain = mainRecord.name;
-// export const service = currencyConverter.urn;
+export const domain = mainRecord.name;
+export const service = currencyConverter.urn;
